@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `onetable`
+-- Base de datos: `table_book`
 --
 
 -- --------------------------------------------------------
@@ -27,6 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `mesas`
 --
+CREATE DATABASE table_book;
+USE table_book;
 
 CREATE TABLE `mesas` (
   `id` int(10) UNSIGNED NOT NULL,
