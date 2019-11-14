@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/Tables', 'TablesController@show');
+Route::post('/new_table', 'newTable@create');

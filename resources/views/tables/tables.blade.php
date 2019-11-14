@@ -35,6 +35,16 @@
               <p>Tables</p>
             </a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown link
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
           <!-- your sidebar here -->
         </ul>
       </div>
@@ -107,6 +117,8 @@
                     <div class="card-header card-header-primary">
                       <h4 class="card-title ">Mesas disponibles </h4>
                       {{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNewTable">Nueva mesa</button> 
+                      
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
@@ -129,7 +141,7 @@
                                 @if ($table->table_status)
                                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Reservar mesa</button> 
                                 @else
-                                  <button type="button" class="btn btn-default">Reservar mesa</button></td>  
+                                  <button type="button" class="btn btn-default">Mesa reservada</button></td>  
                                 @endif
                             </tr>
                           @endforeach
@@ -143,25 +155,46 @@
               </div>    
           <!-- your content here -->
           <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+          <div class="modal fade" id="modalNewTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Nueva Mesa</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  ...
+                  <form action="/new_table" method="POST">
+                    @csrf <!-- {{ csrf_field() }} -->
+                      <div class="form-group">
+                        <label for="sucursal">Sucursal</label>
+                        <select style="color:black" class="form-control" name="sucursal">
+                          <option value="1">Tienda 1</option>
+                        </select>
+                      </div><br>
+                    <div class="form-group">
+                       <label for="identificador" class="bmd-label-floating">Identificador</label>
+                       <input style="color:black;" name="identificador" class="form-control" id="identificador">
+                      </div><br>
+                    <div class="form-group">
+                        <label for="capacidad" class="bmd-label-floating">Capacidad</label>
+                        <input style="color:black;" type="number" name="capacidad" class="form-control" id="capacidad">
+                        <span class="bmd-help">por ejemplo: 4</span>
+                   </div>
+                   
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
+
+
+
         </div>
       </div>
       <footer class="footer">
